@@ -12,8 +12,11 @@ import androidx.navigation.compose.rememberNavController
 import com.aminovic.core.navigation.Route
 import com.aminovic.mycalorytracker.navigation.navigate
 import com.aminovic.mycalorytracker.ui.theme.MyCaloryTrackerTheme
+import com.aminovic.onboarding_presentation.gender.GenderScreen
 import com.aminovic.onboarding_presentation.welcome.WelcomeScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +31,9 @@ class MainActivity : ComponentActivity() {
                         WelcomeScreen(onNavigate = navController::navigate)
                     }
                     composable(Route.AGE) {
-
                     }
                     composable(Route.GENDER) {
-
+                        GenderScreen(onNavigate = navController::navigate)
                     }
                     composable(Route.HEIGHT) {
 
