@@ -6,7 +6,6 @@ plugins {
 }
 
 android {
-    namespace = ProjectConfig.appId
     compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
@@ -40,12 +39,6 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Compose.composeCompilerVersion
     }
-    packagingOptions {
-        exclude("META-INF/AL2.0")
-        exclude("META-INF/LGPL2.1")
-        exclude("**/attach_hotspot_windows.dll")
-        exclude("META-INF/licenses/ASM")
-    }
 }
 
 dependencies {
@@ -63,6 +56,7 @@ dependencies {
     kapt(DaggerHilt.hiltCompiler)
 
     implementation(project(Modules.core))
+    implementation(project(Modules.coreUI))
     implementation(project(Modules.onboardingPresentation))
     implementation(project(Modules.onboardingDomain))
     implementation(project(Modules.trackerPresentation))

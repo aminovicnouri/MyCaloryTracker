@@ -8,12 +8,14 @@
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="/usr/local/Cellar/gradle/7.5.1/libexec" />
+        <option name="gradleJvm" value="11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core-ui" />
             <option value="$PROJECT_DIR$/onboarding" />
             <option value="$PROJECT_DIR$/onboarding/onboarding_domain" />
             <option value="$PROJECT_DIR$/onboarding/onboarding_presentation" />
