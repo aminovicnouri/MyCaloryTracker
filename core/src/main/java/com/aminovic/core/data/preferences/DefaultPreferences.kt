@@ -48,21 +48,21 @@ class DefaultPreferences(
             .apply()
     }
 
-    override fun saveCarbRatio(ratio: Float) {
+    override fun saveCarbRatio(ratio: Int) {
         sharedPref.edit()
-            .putFloat(Preferences.KEY_CARB_RATIO, ratio)
+            .putInt(Preferences.KEY_CARB_RATIO, ratio)
             .apply()
     }
 
-    override fun saveProteinRatio(ratio: Float) {
+    override fun saveProteinRatio(ratio: Int) {
         sharedPref.edit()
-            .putFloat(Preferences.KEY_PROTEIN_RATIO, ratio)
+            .putInt(Preferences.KEY_PROTEIN_RATIO, ratio)
             .apply()
     }
 
-    override fun saveFatRatio(ratio: Float) {
+    override fun saveFatRatio(ratio: Int) {
         sharedPref.edit()
-            .putFloat(Preferences.KEY_FAT_RATIO, ratio)
+            .putInt(Preferences.KEY_FAT_RATIO, ratio)
             .apply()
     }
 
