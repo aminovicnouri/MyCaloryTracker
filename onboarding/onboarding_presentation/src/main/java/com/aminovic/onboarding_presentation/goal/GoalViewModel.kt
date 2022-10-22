@@ -1,11 +1,11 @@
-package com.aminovic.onboarding_presentation.gender
+package com.aminovic.onboarding_presentation.goal
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aminovic.core.domain.model.Gender
+import com.aminovic.core.domain.model.GoalType
 import com.aminovic.core.domain.preferences.Preferences
 import com.aminovic.core.navigation.Route
 import com.aminovic.core.util.UiEvent
@@ -17,23 +17,23 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class GenderViewModel @Inject constructor(
+class GoalViewModel @Inject constructor(
     private val preferences: Preferences
 ) : ViewModel() {
-    var selectedGender by mutableStateOf<Gender>(Gender.Male)
+    var selectedGoal by mutableStateOf<GoalType>(GoalType.KeepWeight)
         private set
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-    fun onGenderClick(gender: Gender) {
-        selectedGender = gender
+    fun onGoalClick(goalType: GoalType) {
+        selectedGoal = goalType
     }
 
     fun onNextClick() {
         viewModelScope.launch {
-            preferences.saveGender(selectedGender)
-            _uiEvent.send(UiEvent.Navigate(Route.AGE))
+            preferences.saveGoalType(selectedGoal)
+            _uiEvent.send(UiEvent.Navigate(Route.GOAL))
         }
     }
 }
