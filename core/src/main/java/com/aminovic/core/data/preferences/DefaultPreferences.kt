@@ -6,6 +6,7 @@ import com.aminovic.core.domain.model.Gender
 import com.aminovic.core.domain.model.GoalType
 import com.aminovic.core.domain.model.UserInfo
 import com.aminovic.core.domain.preferences.Preferences
+import com.aminovic.core.domain.preferences.Preferences.Companion.KEY_SHOULD_SHOW_ONBOARDING
 
 
 class DefaultPreferences(
@@ -88,5 +89,13 @@ class DefaultPreferences(
             proteinRatio = proteinRatio,
             fatRatio = fatRatio
         )
+    }
+
+    override fun saveShouldShowOnboarding(shouldShow: Boolean) {
+        sharedPref.edit().putBoolean(KEY_SHOULD_SHOW_ONBOARDING, shouldShow).apply()
+    }
+
+    override fun loadShouldShowOnboarding(): Boolean {
+        return sharedPref.getBoolean(KEY_SHOULD_SHOW_ONBOARDING, true)
     }
 }
