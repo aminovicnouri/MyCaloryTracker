@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class TrackedOverviewViewModel @Inject constructor(
+class TrackerOverviewViewModel @Inject constructor(
     preferences: Preferences,
     private val trackerUseCases: TrackerUseCases
 ) : ViewModel() {
@@ -119,3 +119,4 @@ class TrackedOverviewViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 }
+
