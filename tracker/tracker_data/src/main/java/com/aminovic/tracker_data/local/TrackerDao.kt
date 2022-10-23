@@ -1,28 +1,25 @@
 package com.aminovic.tracker_data.local
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import com.aminovic.tracker_data.local.entity.TrackedFootEntity
+import androidx.room.*
+import com.aminovic.tracker_data.local.entity.TrackedFoodEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TrackerDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTrackedFood(trackedFootEntity: TrackedFootEntity)
+    suspend fun insertTrackedFood(trackedFoodEntity: TrackedFoodEntity)
 
     @Delete
-    suspend fun deleteTrackedFood(trackedFootEntity: TrackedFootEntity)
+    suspend fun deleteTrackedFood(trackedFoodEntity: TrackedFoodEntity)
 
     @Query(
         """
             SELECT *
-            FROM trackedfootentity
+            FROM trackedfoodentity
             WHERE dayOfMonth = :day AND month = :month AND year = :year
         """
     )
-    fun getFoodsForDate(day: Int, month: Int, year: Int): Flow<List<TrackedFootEntity>>
+    fun getFoodsForDate(day: Int, month: Int, year: Int): Flow<List<TrackedFoodEntity>>
 }
+
