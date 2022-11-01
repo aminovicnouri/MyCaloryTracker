@@ -46,7 +46,7 @@ class TrackerOverviewViewModel @Inject constructor(
                             route = Route.SEARCH
                                     + "/${event.meal.mealType.name}"
                                     + "/${state.date.dayOfMonth}"
-                                    + "/${state.date.month}"
+                                    + "/${state.date.monthValue}"
                                     + "/${state.date.year}"
                         )
                     )
@@ -119,4 +119,3 @@ class TrackerOverviewViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 }
-

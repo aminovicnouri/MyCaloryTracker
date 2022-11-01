@@ -27,7 +27,7 @@ class SearchViewModel @Inject constructor(
         private set
 
     private val _uiEvent = Channel<UiEvent>()
-    val event = _uiEvent.receiveAsFlow()
+    val uiEvent = _uiEvent.receiveAsFlow()
 
     fun onEvent(event: SearchEvent) {
         when (event) {

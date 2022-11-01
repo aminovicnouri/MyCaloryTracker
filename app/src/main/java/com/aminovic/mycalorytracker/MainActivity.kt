@@ -5,14 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import coil.annotation.ExperimentalCoilApi
 import com.aminovic.core.navigation.Route
 import com.aminovic.mycalorytracker.navigation.navigate
 import com.aminovic.mycalorytracker.ui.theme.MyCaloryTrackerTheme
@@ -24,9 +25,12 @@ import com.aminovic.onboarding_presentation.height.HeightScreen
 import com.aminovic.onboarding_presentation.nutrient_goals.NutrientGoalScreen
 import com.aminovic.onboarding_presentation.weight.WeightScreen
 import com.aminovic.onboarding_presentation.welcome.WelcomeScreen
+import com.aminovic.tracker_presentation.search.SearchScreen
 import com.aminovic.tracker_presentation.tracker_overview.TrackerOverviewScreen
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalComposeUiApi
+@ExperimentalCoilApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,8 +41,7 @@ class MainActivity : ComponentActivity() {
                 val scaffoldState = rememberScaffoldState()
 
                 Scaffold(
-                    modifier = Modifier
-                        .fillMaxSize(),
+                    modifier = Modifier.fillMaxSize(),
                     scaffoldState = scaffoldState
                 ) {
                     NavHost(
@@ -50,8 +53,8 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(Route.AGE) {
                             AgeScreen(
-                                onNavigate = navController::navigate,
-                                scaffoldState = scaffoldState
+                                scaffoldState = scaffoldState,
+                                onNavigate = navController::navigate
                             )
                         }
                         composable(Route.GENDER) {
@@ -65,50 +68,63 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(Route.WEIGHT) {
                             WeightScreen(
-                                onNavigate = navController::navigate,
-                                scaffoldState = scaffoldState
+                                scaffoldState = scaffoldState,
+                                onNavigate = navController::navigate
                             )
                         }
                         composable(Route.NUTRIENT_GOAL) {
                             NutrientGoalScreen(
-                                onNavigate = navController::navigate,
-                                scaffoldState = scaffoldState
+                                scaffoldState = scaffoldState,
+                                onNavigate = navController::navigate
                             )
                         }
                         composable(Route.ACTIVITY) {
-                            ActivityScreen(
-                                onNavigate = navController::navigate,
-                            )
+                            ActivityScreen(onNavigate = navController::navigate)
                         }
                         composable(Route.GOAL) {
-                            GoalScreen(
-                                onNavigate = navController::navigate,
-                            )
+                            GoalScreen(onNavigate = navController::navigate)
                         }
+
                         composable(Route.TRACKER_OVERVIEW) {
                             TrackerOverviewScreen(
-                                onNavigate = navController::navigate,
+                                onNavigate = navController::navigate
                             )
                         }
-                        composable(Route.SEARCH) {
-
+                        composable(
+                            route = Route.SEARCH + "/{mealName}/{dayOfMonth}/{month}/{year}",
+                            arguments = listOf(
+                                navArgument("mealName") {
+                                    type = NavType.StringType
+                                },
+                                navArgument("dayOfMonth") {
+                                    type = NavType.IntType
+                                },
+                                navArgument("month") {
+                                    type = NavType.IntType
+                                },
+                                navArgument("year") {
+                                    type = NavType.IntType
+                                },
+                            )
+                        ) {
+                            val mealName = it.arguments?.getString("mealName")!!
+                            val dayOfMonth = it.arguments?.getInt("dayOfMonth")!!
+                            val month = it.arguments?.getInt("month")!!
+                            val year = it.arguments?.getInt("year")!!
+                            SearchScreen(
+                                scaffoldState = scaffoldState,
+                                mealName = mealName,
+                                dayOfMonth = dayOfMonth,
+                                month = month,
+                                year = year,
+                                onNavigateUp = {
+                                    navController.navigateUp()
+                                }
+                            )
                         }
                     }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MyCaloryTrackerTheme {
-        Greeting("Android")
     }
 }
