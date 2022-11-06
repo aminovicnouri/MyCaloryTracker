@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.LastBaseline
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.aminovic.core_ui.LocalSpacing
@@ -29,15 +30,16 @@ fun UnitDisplay(
     Row(modifier = modifier) {
         Text(
             text = amount.toString(),
-            style = MaterialTheme.typography.h6,
+            style = MaterialTheme.typography.body1,
             color = amountColor,
             modifier = Modifier.alignBy(LastBaseline)
         )
         Spacer(modifier = Modifier.width(spacing.spaceExtraSmall))
         Text(
             text = unit,
-            style = MaterialTheme.typography.body1,
+            style = MaterialTheme.typography.body2,
             color = unitColor,
+            overflow = TextOverflow.Ellipsis,
             modifier = Modifier.alignBy(LastBaseline)
         )
     }

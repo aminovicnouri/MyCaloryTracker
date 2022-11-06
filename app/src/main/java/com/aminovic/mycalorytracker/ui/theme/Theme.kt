@@ -20,6 +20,7 @@ private val DarkColorPalette = darkColors(
     onSurface = TextWhite,
     onPrimary = Color.White,
     onSecondary = Color.White,
+    error = Color.Red
 )
 
 private val LightColorPalette = lightColors(

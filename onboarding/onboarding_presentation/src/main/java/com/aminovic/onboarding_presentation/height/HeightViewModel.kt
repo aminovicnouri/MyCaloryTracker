@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aminovic.core.domain.preferences.Preferences
 import com.aminovic.core.domain.use_case.FilterOutDigits
-import com.aminovic.core.navigation.Route
+
 import com.aminovic.core.util.UiEvent
 import com.aminovic.core.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -46,7 +46,7 @@ class HeightViewModel @Inject constructor(
                 return@launch
             }
             preferences.saveHeight(heightNumber)
-            _uiEvent.send(UiEvent.Navigate(Route.WEIGHT))
+            _uiEvent.send(UiEvent.Success)
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.aminovic.core.navigation
+package com.aminovic.mycalorytracker.navigation
 
 object Route {
     const val WELCOME = "welcome"

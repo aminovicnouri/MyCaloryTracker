@@ -27,10 +27,9 @@ class CalculateMealNutrients(
                     mealType = type
                 )
             }
-
         val totalCarbs = allNutrients.values.sumOf { it.carbs }
-        val totalProteins = allNutrients.values.sumOf { it.protein }
-        val totalFats = allNutrients.values.sumOf { it.fat }
+        val totalProtein = allNutrients.values.sumOf { it.protein }
+        val totalFat = allNutrients.values.sumOf { it.fat }
         val totalCalories = allNutrients.values.sumOf { it.calories }
 
         val userInfo = preferences.loadUserInfo()
@@ -40,18 +39,17 @@ class CalculateMealNutrients(
         val fatGoal = (caloryGoal * userInfo.fatRatio / 9f).roundToInt()
 
         return Result(
-            carbsGoal =  carbsGoal,
-            proteinsGoal = proteinGoal,
-            fatsGoal = fatGoal,
+            carbsGoal = carbsGoal,
+            proteinGoal = proteinGoal,
+            fatGoal = fatGoal,
             caloriesGoal = caloryGoal,
             totalCarbs = totalCarbs,
-            totalProteins = totalProteins,
-            totalFats = totalFats,
+            totalProtein = totalProtein,
+            totalFat = totalFat,
             totalCalories = totalCalories,
             mealNutrients = allNutrients
         )
     }
-
 
     private fun bmr(userInfo: UserInfo): Int {
         return when(userInfo.gender) {
@@ -90,12 +88,12 @@ class CalculateMealNutrients(
 
     data class Result(
         val carbsGoal: Int,
-        val proteinsGoal: Int,
-        val fatsGoal: Int,
+        val proteinGoal: Int,
+        val fatGoal: Int,
         val caloriesGoal: Int,
         val totalCarbs: Int,
-        val totalProteins: Int,
-        val totalFats: Int,
+        val totalProtein: Int,
+        val totalFat: Int,
         val totalCalories: Int,
         val mealNutrients: Map<MealType, MealNutrients>
     )

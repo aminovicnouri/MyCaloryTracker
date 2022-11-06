@@ -20,7 +20,7 @@ fun NutrientsBar(
     protein: Int,
     fat: Int,
     calories: Int,
-    caloriesGoal: Int,
+    calorieGoal: Int,
     modifier: Modifier = Modifier
 ) {
     val background = MaterialTheme.colors.background
@@ -34,25 +34,23 @@ fun NutrientsBar(
     val fatWidthRatio = remember {
         Animatable(0f)
     }
-
     LaunchedEffect(key1 = carbs) {
         carbWidthRatio.animateTo(
-            targetValue = ((carbs * 4f) / caloriesGoal)
+            targetValue = ((carbs * 4f) / calorieGoal)
         )
     }
     LaunchedEffect(key1 = protein) {
         proteinWidthRatio.animateTo(
-            targetValue = ((protein * 4f) / caloriesGoal)
+            targetValue = ((protein * 4f) / calorieGoal)
         )
     }
     LaunchedEffect(key1 = fat) {
         fatWidthRatio.animateTo(
-            targetValue = ((fat * 9f) / caloriesGoal)
+            targetValue = ((fat * 9f) / calorieGoal)
         )
     }
-
     Canvas(modifier = modifier) {
-        if (calories <= caloriesGoal) {
+        if(calories <= calorieGoal) {
             val carbsWidth = carbWidthRatio.value * size.width
             val proteinWidth = proteinWidthRatio.value * size.width
             val fatWidth = fatWidthRatio.value * size.width
