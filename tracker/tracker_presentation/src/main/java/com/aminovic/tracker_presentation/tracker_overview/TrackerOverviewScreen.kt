@@ -68,6 +68,7 @@ fun TrackerOverviewScreen(
                             .padding(horizontal = spacing.spaceSmall)
                     ) {
                         state.trackedFoods.forEach { food ->
+                            if (food.mealType == meal.mealType)
                             TrackedFoodItem(
                                 trackedFood = food,
                                 onDeleteClick = {
