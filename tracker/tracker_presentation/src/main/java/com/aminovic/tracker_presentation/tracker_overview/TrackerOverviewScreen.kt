@@ -4,14 +4,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
 import com.aminovic.core.R
-import com.aminovic.core.util.UiEvent
 import com.aminovic.core_ui.LocalSpacing
 import com.aminovic.tracker_presentation.tracker_overview.component.*
 
@@ -59,19 +57,21 @@ fun TrackerOverviewScreen(
                             .fillMaxWidth()
                             .padding(horizontal = spacing.spaceSmall)
                     ) {
-                        state.trackedFoods.forEach { food ->
-                            if (food.mealType == meal.mealType)
-                            TrackedFoodItem(
-                                trackedFood = food,
-                                onDeleteClick = {
-                                    viewModel.onEvent(
-                                        TrackerOverviewEvent
-                                            .OnDeleteTrackedFoodClick(food)
-                                    )
-                                }
-                            )
-                            Spacer(modifier = Modifier.height(spacing.spaceMedium))
+                        state.trackedFoods.filter {
+                            it.mealType == meal.mealType
                         }
+                            .forEach { food ->
+                                TrackedFoodItem(
+                                    trackedFood = food,
+                                    onDeleteClick = {
+                                        viewModel.onEvent(
+                                            TrackerOverviewEvent
+                                                .OnDeleteTrackedFoodClick(food)
+                                        )
+                                    }
+                                )
+                                Spacer(modifier = Modifier.height(spacing.spaceMedium))
+                            }
                         AddButton(
                             text = stringResource(
                                 id = R.string.add_meal,
