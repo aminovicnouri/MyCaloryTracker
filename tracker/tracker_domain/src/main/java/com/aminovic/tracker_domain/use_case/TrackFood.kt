@@ -28,7 +28,7 @@ class TrackFood(
                 imageUrl = food.imageUrl,
                 mealType = mealType,
                 amount = amount,
-                date = date
+                date = date,
             )
         )
     }

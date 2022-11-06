@@ -22,7 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TrackerOverviewViewModel @Inject constructor(
     preferences: Preferences,
-    private val trackerUseCases: TrackerUseCases
+    private val trackerUseCases: TrackerUseCases,
 ) : ViewModel() {
 
     var state by mutableStateOf(TrackerOverviewState())
@@ -34,6 +34,7 @@ class TrackerOverviewViewModel @Inject constructor(
     private var getFoodsForDateJob: Job? = null
 
     init {
+        refreshFoods()
         preferences.saveShouldShowOnboarding(false)
     }
 

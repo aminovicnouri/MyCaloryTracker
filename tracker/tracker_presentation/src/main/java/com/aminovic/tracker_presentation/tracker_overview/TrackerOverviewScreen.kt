@@ -25,7 +25,6 @@ fun TrackerOverviewScreen(
     val spacing = LocalSpacing.current
     val state = viewModel.state
     val context = LocalContext.current
-
     LaunchedEffect(key1 = context) {
         viewModel.uiEvent.collect { event ->
             when (event) {
@@ -33,7 +32,6 @@ fun TrackerOverviewScreen(
                 else -> Unit
             }
         }
-
     }
     LazyColumn(
         modifier = Modifier

@@ -38,15 +38,14 @@ fun AddButton(
                 shape = RoundedCornerShape(100f)
             )
             .padding(spacing.spaceMedium),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
             imageVector = Icons.Default.Add,
             contentDescription = stringResource(id = R.string.add),
             tint = color
         )
-
         Spacer(modifier = Modifier.width(spacing.spaceMedium))
         Text(
             text = text,
